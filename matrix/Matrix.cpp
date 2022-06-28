@@ -432,7 +432,7 @@ size_t Matrix::RankOfMatrix(void) const
 }
 // 类的相关函数
 
-Matrix UnitMatrix(const size_t &n)
+Matrix Matrix::UnitMatrix(const size_t &n)
 {
     Value_Type Rows(n, 0);
     Matrix result;

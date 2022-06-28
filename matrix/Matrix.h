@@ -24,7 +24,6 @@ class Matrix : private Mat2
     friend ostream &operator<<(ostream &, const Matrix &);
     // 数乘(数前置)
     friend inline Matrix operator*(const MyType &, const Matrix &);
-    friend Matrix UnitMatrix(const size_t &n);
     // 将矩阵的内容储存到一个串里
     friend string MatrixToString(const Matrix &mat);
     // 可以使用指定范围内的数以指定的行高、列宽随机生成一个矩阵
@@ -122,9 +121,11 @@ public:
     Matrix TransposeMatrix(void) const;
     // 求矩阵的秩
     size_t RankOfMatrix(void) const;
+
+public:
+    // 创建n阶单位矩阵
+    static Matrix UnitMatrix(const size_t &n);
 };
 // 浮点型转换为字符串
 string LdoubleToString(long double);
-// 创建n阶单位矩阵
-Matrix UnitMatrix(const size_t &n);
 #endif

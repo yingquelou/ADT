@@ -90,8 +90,16 @@ bool reverseList(const list *);
 // 清空单链表——会保留头结点
 bool clearList(list);
 bool clearListC(list);
-// 销毁单链表——连头结点也会被销毁
+/** 
+ * 销毁单链表——连头结点也会被销毁
+ */
 bool DestroyList(list *);
+/**
+ * @brief 
+ * @param
+ * @return true 
+ * @return false 
+ */
 bool DestroyListC(list *);
 bool DestroyListD(dList *);
 #endif

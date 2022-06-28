@@ -1,0 +1,12 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML><HEAD></HEAD><BODY>
+<OBJECT type="text/site properties">
+<param name="FrameName" value="right">
+</OBJECT>
+<UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="struct_data.html"><param name="Name" value="Data"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structd_list.html"><param name="Name" value="dList"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structlist.html"><param name="Name" value="list"></OBJECT>
+</UL>
+</BODY>
+</HTML>

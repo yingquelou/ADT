@@ -116,6 +116,13 @@ M_Base::M_Base(const std::initializer_list<rows_type>& il)
 		status = false;
 	}
 }
+/**
+ * @brief 
+ * 
+ * @param out 
+ * @param mb 
+ * @return std::ostream& 
+ */
 std::ostream& operator<<(std::ostream& out, const M_Base& mb)
 {
 	if (!mb)
