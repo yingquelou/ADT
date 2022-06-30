@@ -131,7 +131,7 @@ void postorderTraversal(const Trnode *const pRoot, void (*func)(void *))
 {
     if (!pRoot)
         return;
-    inorderTraversal(pRoot->left, func);
-    inorderTraversal(pRoot->right, func);
+    postorderTraversal(pRoot->left, func);
+    postorderTraversal(pRoot->right, func);
     func(pRoot->pItem);
 }

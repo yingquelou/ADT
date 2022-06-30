@@ -3,7 +3,7 @@
 #include <ctype.h>
 int cmp(const void *e1, const void *e2)
 {
-    return *(char *)e1 - *(char *)e2 < 0 ? -1 : 1;
+    return *(char *)e1 - *(char *)e2 /* < 0 ? -1 : 1 */;
 }
 void print(void *pItem)
 {
@@ -14,7 +14,7 @@ int main(void)
     Tree t;
     initTree(&t);
     char *pCh;
-    while (1 == scanf("%c", pCh = malloc(1)) && isprint(*pCh))
+    while (1 == scanf("%c", pCh = malloc(1)) && isgraph(*pCh))
     {
         addItem(&t, pCh, cmp);
     }
