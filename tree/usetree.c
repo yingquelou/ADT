@@ -1,4 +1,4 @@
-#include "tree.c"
+#include "tree.h"
 #include <stdio.h>
 #include <ctype.h>
 int cmp(const void *e1, const void *e2)
@@ -7,7 +7,8 @@ int cmp(const void *e1, const void *e2)
 }
 void print(void *pItem)
 {
-    printf("%c\t", *(char *)pItem);
+    if (pItem)
+        printf("%c ", *(char *)pItem);
 }
 int main(void)
 {

@@ -1,6 +1,7 @@
 .vscode
 *.i
 *.s
+build
 # Prerequisites
 *.d
 
