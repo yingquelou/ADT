@@ -13,9 +13,10 @@ void print(void *pItem)
 int main(void)
 {
     Tree t;
-    initTree(&t);
+    if (!initTree(&t))
+        return 0;
     char *pCh;
-    while (1 == scanf("%c", pCh = malloc(1)) && isgraph(*pCh))
+    while (1 == scanf("%c", pCh = malloc(1)) && (isgraph(*pCh) ? 1 : (free(pCh), 0)))
     {
         addItem(&t, pCh, cmp);
     }
@@ -24,6 +25,8 @@ int main(void)
     inorderTraversal(t.root, print);
     puts("");
     postorderTraversal(t.root, print);
+    printf("\n%d", t.size);
+    puts("");
     clearTree(&t);
     return 0;
 }
