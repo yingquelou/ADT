@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.0.0)
-project(tree VERSION 0.1.0)
-
-add_executable(tree usetree.c tree.c)
+set(CMAKE_INCLUDE_PATH ${PROJECT_SOURCE_DIR}/include)
+add_library(tree SHARED tree.c)
+install(TARGETS tree DESTINATION lib)
+install(FILES tree.h DESTINATION include)
