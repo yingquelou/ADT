@@ -10,6 +10,15 @@
 #pragma once
 #include <stdlib.h>
 #include <stdbool.h>
+// used as a parameter of `fprintf` or `printf`,
+// such as fprintf(filename,reportExceptions(e))
+// or printf(reportExceptions(e)).
+// tip: The `e` must be a character string.
+#define reportExceptions(e)       \
+"%s %s %s %s:%d:%s\n", \
+__DATE__, __TIME__, __FILE__, __FUNCTION__, __LINE__, e
+#define NullPointerException "NullPointerException"
+
 // 节点类型
 typedef struct trnode
 {
@@ -48,7 +57,7 @@ bool isTreeEmpty(const Tree *const pTree);
  */
 bool clearTree(Tree *const pTree);
 /* 节点元素的比较函数指针类型 */
-typedef int(__cdecl *CompareFunction)(const void *, const void *);
+typedef int (*CompareFunction)(const void *, const void *);
 /**
  * \brief 向树中添加元素
  *

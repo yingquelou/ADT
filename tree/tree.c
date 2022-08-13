@@ -12,7 +12,8 @@ bool initTree(Tree *const pTree)
     initLog();
     if (pTree == NULL)
     {
-        fprintf(errorFile, "%s %s %s %d\n", __DATE__, __TIME__, __FILE__, __LINE__);
+        fprintf(errorFile, reportExceptions(NullPointerException));
+        // printf(reportExceptions(NullPointerException));
         return false;
     }
     pTree->root = NULL;
@@ -27,7 +28,7 @@ bool isTreeEmpty(const Tree *const pTree)
 }
 /**
  * \brief 由clearTree调用,以后序遍历的方式销毁某个子树
- * \param pChildTree 指向可以代表某个子树的节点
+ * \param pChildTree 指向某个子树
  * \date by yingquelou at 2022-06-28 11:54:04
  */
 static void destroyChildTree(Trnode *const pChildTree)
@@ -48,6 +49,7 @@ bool clearTree(Tree *const pTree)
     destroyChildTree(pTree->root);
     pTree->root = NULL;
     pTree->size = 0;
+    fclose(errorFile);
     return true;
 }
 /**
@@ -67,7 +69,7 @@ static inline Trnode *makeNode(void)
  * \param cmp 用于比较元素的函数的指针
  * \retval \b 如果树中已有相同的元素,childNode指向该元素所在节点,parentNode指向相应的父节点
  * \retval \b 如果树中没有相同的元素,childNode为空,
- * \b 此时若parentNode非空,由deleteItem调用时,新元素将被插入parentNode节点之后,若parentNode为空,由deleteItem调用时,新元素将被插入根节点
+ * \b 此时若parentNode非空,由addItem调用时,新元素将被插入parentNode节点之后,若parentNode为空,由deleteItem调用时,新元素将被插入根节点
  * \retval NULL 当参数不合法时返回NULL;当树是空树时亦返回NULL;
  * \date by yingquelou at 2022-07-01 20:56:14
  */

@@ -2,7 +2,7 @@
 #include "Point.h"
 #include "Line.h"
 /* 双曲线————椭圆类
-一般方程：ax^2+by^2+cx+dy+e=0
+一般方程：ax^2+by^2+cxy+dx+ey+f=0
 *构造椭圆的常规方法：
 *1. 长轴 短轴
 *2. 焦点 定长

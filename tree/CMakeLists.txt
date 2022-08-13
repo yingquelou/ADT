@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.0.0)
 set(CMAKE_INCLUDE_PATH ${PROJECT_SOURCE_DIR}/include)
-add_library(tree SHARED tree.c)
+set(CMAKE_PREFIX_PATH ${PROJECT_SOURCE_DIR})
+add_library(tree STATIC tree.c)
 install(TARGETS tree DESTINATION lib)
 install(FILES tree.h DESTINATION include)
