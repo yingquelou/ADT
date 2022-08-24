@@ -444,41 +444,11 @@ Matrix Matrix::UnitMatrix(const size_t &n)
     result.shrink_to_fit();
     return result;
 }
-string LdoubleToString(long double val)
+std::string LdoubleToString(const long double &&val)
 {
-    const char Nat[11] = "0123456789";
-    string ret;
-    int i, x;
-    decltype(val) f;
-    if (val < 0)
-    {
-        ret += '-';
-        val *= -1;
-    }
-    else if (!val)
-        ret += "+0";
-    else
-        ret += '+';
-    i = val;
-    f = val - i;
-    if (!i && val)
-        ret += '0';
-    while (i)
-    {
-        x = i % 10;
-        i /= 10;
-        ret.insert(ret.begin() + 1, Nat[x]);
-    }
-    ret += '.';
-    for (size_t j = 0; j < 6; ++j)
-    {
-        f *= 10;
-        x = f;
-        f -= x;
-        ret += Nat[x];
-    }
-    // cout << std::strtold(ret.c_str(), nullptr);
-    return ret;
+    std::stringstream ret;
+    ret << val;
+    return ret.str();
 }
 
 static std::default_random_engine rd; // 将用于获得随机数引擎的种子

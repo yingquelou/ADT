@@ -1,6 +1,7 @@
 #ifndef _Matrix_
 #define _Matrix_ 1
 #include <iostream>
+#include <sstream>
 #include <iomanip>
 #include <vector>
 #include <algorithm>
@@ -127,5 +128,5 @@ public:
     static Matrix UnitMatrix(const size_t &n);
 };
 // 浮点型转换为字符串
-string LdoubleToString(long double);
+std::string LdoubleToString(const long double &&val);
 #endif

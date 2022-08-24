@@ -471,11 +471,13 @@ bool Determinant::RSFM_REM()
 	// ret.shrink_to_fit();
 	return true;
 }
-//bool Determinant::RSFM_REM()const
-//{
-//	Determinant ret(*this);
-//	return ret.RSFM_REM();
-//}
+/**
+ * \brief 
+ * 
+ * \param Dt 
+ * \return  
+ * \date by yingquelou at 2022-08-18 15:09:59
+ */
 Determinant::value_type Determinant::operator+(const Determinant&Dt)const {
 	Determinant left(*this),right(Dt);
 	return left() + right();
