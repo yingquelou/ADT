@@ -1,9 +1,0 @@
-Jul  2 2022 13:45:46 D:\Desktop\adt\tree\tree.c 15
-Jul  2 2022 13:49:35 D:\Desktop\adt\tree\tree.c 15
-Aug 13 2022 17:08:49 /mnt/d/Desktop/adt/tree/tree.c 15: initTree
-Aug 13 2022 17:35:05 /mnt/d/Desktop/adt/tree/tree.c 15:at initTree,NullPointerException
-Aug 13 2022 17:53:26 /mnt/d/Desktop/adt/tree/tree.c 15:at initTree,NullPointerException
-Aug 13 2022 17:59:42 /mnt/d/Desktop/adt/tree/tree.c 15:at initTree,NullPointerException
-Aug 13 2022 18:32:15 /mnt/d/Desktop/adt/tree/tree.c 15:at initTree,NullPointerException
-Aug 13 2022 18:37:15 in /mnt/d/Desktop/adt/tree/tree.c L15:at initTree:NullPointerException
-Aug 13 2022 18:40:30 /mnt/d/Desktop/adt/tree/tree.c initTree:15:NullPointerException
