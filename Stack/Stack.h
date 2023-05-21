@@ -10,54 +10,85 @@
 #include <stdlib.h>
 #include <stdio.h>
 /* 一、顺序栈  sequence stack  -->StackS */
-typedef struct ss
+typedef struct StackS
 {
-    const void **top;
-    const void **base;
-    unsigned maxlength;
+    // 栈顶指针
+    void **top;
+    // 栈底指针
+    void **base;
+    // 栈的大小尺寸
+    unsigned size;
 } StackS;
-typedef bool (*pFunc)(FILE *const, void *const);
-/* 操作：   初始化栈                     */
-/* 前提条件： ps 指向一个栈               */
-bool InitStackS(StackS *ps, const unsigned maxlength);
-bool IsFullStackS(const StackS *const ps);
-bool PushStackS(StackS *const ps, const void *const pData);
-bool IsEmptyStackS(const StackS *const ps);
-bool PopStackS(StackS *const ps, const void **const ppData);
-// 调用OutPut函数(需要根据结点元素类型定义的函数)将栈的内容输出到流out
-// OutPut函数:只须定义单个元素的输出规则
-void OutFromStackS(const StackS *ps, const pFunc OutPut, FILE *const out);
-// 用于测试:调用InPut函数(需要根据结点元素类型定义的函数)从流in中读取数据到栈中
-// ps最好是空栈
-// 当栈满或数据读完时返回
-// InPut函数:只须定义单个元素的读取(输入)规则;
-void StreamToStackS(StackS *const ps, const pFunc InPut, FILE *const in);
+/* 操作：   创建一个顺序(静态)栈                     */
+extern StackS *CreateStackS(const unsigned stacksize);
+/**
+ * \brief 检查栈是否为空
+ * \param ps 栈
+ * \return  栈若为空返回true,否则返回false
+ * \date by yingquelou at 2023-05-21 18:52:55
+ */
+extern bool IsEmptyStackS(const StackS *const ps);
+extern bool IsFullStackS(const StackS *const ps);
+extern bool PushStackS(StackS *const ps, const void *const pData);
+/**
+ * \brief 出栈
+ *
+ * \param ps 栈
+ * \return  返回出栈的元素
+ * \date by yingquelou at 2023-05-21 18:32:42
+ */
+extern void *PopStackS(StackS *const ps);
+typedef void *(*Func)(void *);
+/**
+ * \brief 对栈中的每个元素执行某个操作
+ *
+ * \param ps 栈
+ * \param fun 自定义操作
+ * \date by yingquelou at 2023-05-21 18:59:20
+ */
+extern void ForeachS(const StackS *const ps, const Func fun);
+/**
+ * \brief 销毁栈
+ * 注意:如果内存是动态分配的,在调用本函数前,
+ * 请定义一个Func类型的函数使用ForeachS进行恰当的内存释放
+ * \param ps 由CreateStackS函数创建的栈,或其他自定义方式动态分配的栈
+ * \date by yingquelou at 2023-05-21 17:34:26
+ */
+extern void DestroyStackS(StackS *ps);
 /* 二、链栈    list stack      -->StackL */
-typedef struct nodeL
+typedef struct StackNodeL
 {
-    const void *pData;
-    struct nodeL *Next;
+    void *pData;
+    struct StackNodeL *Next;
 } StackNodeL, *StackL;
-/* 操作：   初始化栈                     */
-/* 前提条件： ps 指向一个栈                   */
-/* 后置条件： 该栈被初始化为空                 */
-inline void InitStackL(StackL *const ps);
+/* 操作：   创建一个栈                     */
+extern StackL *CreateStackL();
 /* 操作：   检查栈是否为空                  */
-/* 前提条件： ps 指向之前已被初始化的栈            */
 /* 后置条件： 如果栈为空，该函数返回true；否则，返回false   */
-bool IsEmptyStackL(const StackL *const ps);
+extern bool IsEmptyStackL(const StackL *const ps);
 /* 操作：   把项压入栈顶                   */
-/* 前提条件： ps 指向之前已被初始化的栈            */
-/*       pData 指向待压入栈顶的项              */
-/* 当空间开辟失败返回true,否则返回false */
-bool PushStackL(StackL *const ps, const void *const pData);
+/* 前提条件： pData 指向待压入栈顶的项              */
+/* 当内存开辟失败返回false */
+extern bool PushStackL(StackL *const ps, const void *const pData);
 /* 操作：   从栈顶删除项                   */
-/* 前提条件： ps 指向之前已被初始化的栈            */
-/* 后置条件： 如果栈不为空，把栈顶的item拷贝到*pitem，    */
-/*   如果该操作后栈中没有项，则重置该栈为空。        */
-/*   如果删除操作之前栈为空，栈不变，该函数返回false     */
-bool PopStackL(StackL *const ps, const void **const ppData);
-/* 操作：   检查栈是否已满                  */
-/* 前提条件： ps 指向之前已被初始化的栈            */
-/* 后置条件： 如果栈已满，该函数返回true；否则，返回false   */
+/* 后置条件： 如果栈不为空，返回栈顶的项    */
+/*   如果该操作后栈中没有项，则该栈置空。        */
+/*   如果栈为空，栈不变，该函数返回NULL     */
+extern void *PopStackL(StackL *const ps);
+/**
+ * \brief 对栈中的每个元素执行某个操作
+ *
+ * \param ps 栈
+ * \param fun 自定义操作
+ * \date by yingquelou at 2023-05-21 18:59:20
+ */
+extern void ForeachL(const StackL *const ps, const Func fun);
+/**
+ * \brief 销毁栈
+ * 注意:如果内存是动态分配的,在调用本函数前,
+ * 请定义一个Func类型的函数使用ForeachS进行恰当的内存释放
+ * \param ps 由CreateStackL函数创建的栈
+ * \date by yingquelou at 2023-05-21 17:34:26
+ */
+extern void DestroyStackL(StackL *ps);
 #endif

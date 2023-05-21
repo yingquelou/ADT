@@ -1,9 +1,8 @@
-#include "Matrix.cpp"
+// #include "Matrix.cpp"
+#include <iostream>
 int main(void)
 {
-     Matrix B{{1, 0},
-              {0, 1}},
-         A{{0, 1.0}, {1.0, 0}};
-     cout << (A * B);
+     auto &os = std::cout;
+
      return 0;
 }
