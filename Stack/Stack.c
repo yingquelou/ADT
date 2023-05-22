@@ -121,5 +121,6 @@ void DestroyStackL(StackL *ps)
             cur = cur->Next;
             free(tmp);
         }
+        *ps = NULL;
     }
 }
