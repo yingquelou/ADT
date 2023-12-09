@@ -12,11 +12,11 @@ void *Destroy(void *hs)
 }
 int main(void)
 {
-    StackS *ps = CreateStackS(10);
-    PushStackS(ps, "abc");
-    PushStackS(ps, "defg");
-    ForeachS(ps, print);
+    StackS *ps = StackSCreate(10);
+    StackSPush(ps, "abc");
+    StackSPush(ps, "defg");
+    StackSForeach(ps, print);
     // ForeachS(ps, Destroy);
-    DestroyStackS(ps);
+    StackSDestroy(ps);
     return 0;
 }

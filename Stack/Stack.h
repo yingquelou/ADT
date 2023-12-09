@@ -20,16 +20,16 @@ typedef struct StackS
     unsigned size;
 } StackS;
 /* 操作：   创建一个顺序(静态)栈                     */
-extern StackS *CreateStackS(const unsigned stacksize);
+extern StackS *StackSCreate(const unsigned stacksize);
 /**
  * \brief 检查栈是否为空
  * \param ps 栈
  * \return  栈若为空返回true,否则返回false
  * \date by yingquelou at 2023-05-21 18:52:55
  */
-extern bool IsEmptyStackS(const StackS *const ps);
-extern bool IsFullStackS(const StackS *const ps);
-extern bool PushStackS(StackS *const ps, const void *const pData);
+extern bool StackSEmpty(const StackS *const ps);
+extern bool StackSFull(const StackS *const ps);
+extern bool StackSPush(StackS *const ps, const void *const pData);
 /**
  * \brief 出栈
  *
@@ -37,7 +37,7 @@ extern bool PushStackS(StackS *const ps, const void *const pData);
  * \return  返回出栈的元素
  * \date by yingquelou at 2023-05-21 18:32:42
  */
-extern void *PopStackS(StackS *const ps);
+extern void *StackSPop(StackS *const ps);
 typedef void *(*Func)(void *);
 /**
  * \brief 对栈中的每个元素执行某个操作
@@ -46,15 +46,15 @@ typedef void *(*Func)(void *);
  * \param fun 自定义操作
  * \date by yingquelou at 2023-05-21 18:59:20
  */
-extern void ForeachS(const StackS *const ps, const Func fun);
+extern void StackSForeach(const StackS *const ps, const Func fun);
 /**
  * \brief 销毁栈
  * 注意:如果内存是动态分配的,在调用本函数前,
- * 请定义一个Func类型的函数使用ForeachS进行恰当的内存释放
+ * 请定义一个Func类型的函数使用Foreach进行恰当的内存释放
  * \param ps 由CreateStackS函数创建的栈,或其他自定义方式动态分配的栈
  * \date by yingquelou at 2023-05-21 17:34:26
  */
-extern void DestroyStackS(StackS *ps);
+extern void StackSDestroy(StackS *ps);
 /* 二、链栈    list stack      -->StackL */
 typedef struct StackNodeL
 {
@@ -62,19 +62,19 @@ typedef struct StackNodeL
     struct StackNodeL *Next;
 } StackNodeL, *StackL;
 /* 操作：   创建一个栈                     */
-extern StackL *CreateStackL();
+extern StackL *StackLCreate();
 /* 操作：   检查栈是否为空                  */
 /* 后置条件： 如果栈为空，该函数返回true；否则，返回false   */
-extern bool IsEmptyStackL(const StackL *const ps);
+extern bool StackLEmpty(const StackL *const ps);
 /* 操作：   把项压入栈顶                   */
 /* 前提条件： pData 指向待压入栈顶的项              */
 /* 当内存开辟失败返回false */
-extern bool PushStackL(StackL *const ps, const void *const pData);
+extern bool StackLPush(StackL *const ps, const void *const pData);
 /* 操作：   从栈顶删除项                   */
 /* 后置条件： 如果栈不为空，返回栈顶的项    */
 /*   如果该操作后栈中没有项，则该栈置空。        */
 /*   如果栈为空，栈不变，该函数返回NULL     */
-extern void *PopStackL(StackL *const ps);
+extern void *StackLPop(StackL *const ps);
 /**
  * \brief 对栈中的每个元素执行某个操作
  *
@@ -82,13 +82,13 @@ extern void *PopStackL(StackL *const ps);
  * \param fun 自定义操作
  * \date by yingquelou at 2023-05-21 18:59:20
  */
-extern void ForeachL(const StackL *const ps, const Func fun);
+extern void StackLForeach(const StackL *const ps, const Func fun);
 /**
  * \brief 销毁栈
  * 注意:如果内存是动态分配的,在调用本函数前,
- * 请定义一个Func类型的函数使用ForeachS进行恰当的内存释放
+ * 请定义一个Func类型的函数使用Foreach进行恰当的内存释放
  * \param ps 由CreateStackL函数创建的栈
  * \date by yingquelou at 2023-05-21 17:34:26
  */
-extern void DestroyStackL(StackL *ps);
+extern void StackLDestroy(StackL *ps);
 #endif

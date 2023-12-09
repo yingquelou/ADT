@@ -19,21 +19,21 @@ void *Destroy(void *hs)
 int main(void)
 {
     srand((unsigned)time(NULL));
-    StackL *stack = CreateStackL();
+    StackL *stack = StackLCreate();
     for (unsigned i = 0; i < count; i++)
     {
         char *pch;
         if (pch = malloc(1))
         {
             *pch = rand() % 26 + (rand() % 2 ? 'A' : 'a');
-            if (PushStackL(stack, pch))
+            if (StackLPush(stack, pch))
                 continue;
             else
                 break;
         }
     }
-    ForeachL(stack, print);
-    ForeachL(stack, Destroy);
-    DestroyStackL(stack);
+    StackLForeach(stack, print);
+    StackLForeach(stack, Destroy);
+    StackLDestroy(stack);
     return 0;
 }

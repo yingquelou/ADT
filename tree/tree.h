@@ -1,13 +1,10 @@
-/**
- * \file tree.h
- * \brief 二叉树头文件
- *
- * \copyright Copyright (c) 2022
- * \author yingquelou (2695193723@qq.com)
- * \date 2022-07-01 23:30:39
- * \version 0.1
- */
 #pragma once
+#ifndef TREE_H
+#define TREE_H 1
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 #include <stdlib.h>
 #include <stdbool.h>
 // used as a parameter of `fprintf` or `printf`,
@@ -100,3 +97,7 @@ void postorderTraversal(const Trnode *const pRoot, void (*func)(void *));
  * \date by yingquelou at 2022-07-02 21:59:47
  */
 bool deleteItem(Tree *const pTree, void *const pItem, const CompareFunction cmp);
+#ifdef __cplusplus
+}
+#endif
+#endif
