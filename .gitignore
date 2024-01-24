@@ -2,6 +2,7 @@
 *.i
 *.s
 *.txt
+!CMakeLists.txt
 build
 # Prerequisites
 *.d
