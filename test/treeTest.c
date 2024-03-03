@@ -1,4 +1,4 @@
-#include "tree.c"
+#include "tree.h"
 #include <stdio.h>
 #include <ctype.h>
 int cmp(const void *e1, const void *e2)

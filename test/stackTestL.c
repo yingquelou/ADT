@@ -1,4 +1,4 @@
-#include "Stack.c"
+#include "Stack.h"
 #include <stdio.h>
 #include <time.h>
 void *print(void *hs)

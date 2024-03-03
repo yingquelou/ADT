@@ -10,7 +10,6 @@ function(add_subs)
 endfunction(add_subs)
 function(add_clib)
     cmake_path(GET CMAKE_CURRENT_LIST_DIR FILENAME PROJ)
-    project(${PROJ} LANGUAGES C)
     file(GLOB SRCLIST *.c)
     file(GLOB HEADLIST *.h)
     add_library(${PROJ} ${SRCLIST})
@@ -23,7 +22,9 @@ cmake_path(GET CMAKE_SOURCE_DIR FILENAME PROJ)
 project(${PROJ} LANGUAGES C)
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
-set(LIBRARY_OUTPUT_PATH ${EXECUTABLE_OUTPUT_PATH}) 
+set(LIBRARY_OUTPUT_PATH ${EXECUTABLE_OUTPUT_PATH})
 set(BUILD_SHARED_LIBS ON)
+
+enable_testing()
 
 add_subs()

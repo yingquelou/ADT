@@ -1,4 +1,4 @@
-#include "Stack.c"
+#include "Stack.h"
 #include <string.h>
 /* 顺序栈测试示例 */
 void *print(void *hs)
