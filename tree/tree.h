@@ -1,12 +1,21 @@
 #pragma once
 #ifndef TREE_H
 #define TREE_H 1
+#include <stdlib.h>
+#include <stdbool.h>
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-#include <stdlib.h>
-#include <stdbool.h>
+#ifdef _MSC_VER
+#ifdef tree_EXPORTS
+#define TREE_API __declspec(dllexport)
+#else
+#define TREE_API __declspec(dllimport)
+#endif
+#else
+#define TREE_API
+#endif
 // used as a parameter of `fprintf` or `printf`,
 // such as fprintf(filename,reportExceptions(e))
 // or printf(reportExceptions(e)).
@@ -36,7 +45,7 @@ typedef struct tree
  * \retval false 失败
  * \date by yingquelou at 2022-06-28 11:06:39
  */
-bool initTree(Tree *const pTree);
+TREE_API bool initTree(Tree *const pTree);
 /**
  * \brief 检查树是否为空
  * \param pTree 指向树
@@ -44,7 +53,7 @@ bool initTree(Tree *const pTree);
  * \retval false 树非空
  * \date by yingquelou at 2022-06-28 11:14:44
  */
-bool isTreeEmpty(const Tree *const pTree);
+TREE_API bool isTreeEmpty(const Tree *const pTree);
 /**
  * \brief 清空树,效果等同于调用initTree后的状态
  * \param pTree 指向已初始化的树
@@ -52,7 +61,7 @@ bool isTreeEmpty(const Tree *const pTree);
  * \retval false pTree为NULL或树为空
  * \date by yingquelou at 2022-06-28 11:25:28
  */
-bool clearTree(Tree *const pTree);
+TREE_API bool clearTree(Tree *const pTree);
 /* 节点元素的比较函数指针类型 */
 typedef int (*CompareFunction)(const void *, const void *);
 /**
@@ -65,28 +74,28 @@ typedef int (*CompareFunction)(const void *, const void *);
  * \retval false 参数不合法或内部实现中内存开辟失败时
  * \date by yingquelou at 2022-06-28 18:45:30
  */
-bool addItem(Tree *const pTree, void *const pItem, const CompareFunction cmp);
+TREE_API bool addItem(Tree *const pTree, void *const pItem, const CompareFunction cmp);
 /**
  * \brief 以前序遍历的方式对树中的每个元素应用某个函数,例如显示元素内容
  * \param pRoot 指向树的根节点
  * \param func 指向某个函数,该函数只有一个参数,且必须是指向元素类型的指针
  * \date by yingquelou at 2022-06-28 20:31:56
  */
-void preorderTraversal(const Trnode *const pRoot, void (*func)(void *));
+TREE_API void preorderTraversal(const Trnode *const pRoot, void (*func)(void *));
 /**
  * \brief 以中序遍历的方式对树中的每个元素应用某个函数,例如显示元素内容
  * \param pRoot 指向树的根节点
  * \param func 指向某个函数,该函数只有一个参数,且必须是指向元素类型的指针
  * \date by yingquelou at 2022-06-28 20:57:02
  */
-void inorderTraversal(const Trnode *const pRoot, void (*func)(void *));
+TREE_API void inorderTraversal(const Trnode *const pRoot, void (*func)(void *));
 /**
  * \brief 以后序遍历的方式对树中的每个元素应用某个函数,例如显示元素内容
  * \param pRoot 指向树的根节点
  * \param func 指向某个函数,该函数只有一个参数,且必须是指向元素类型的指针
  * \date by yingquelou at 2022-06-28 21:31:49
  */
-void postorderTraversal(const Trnode *const pRoot, void (*func)(void *));
+TREE_API void postorderTraversal(const Trnode *const pRoot, void (*func)(void *));
 /**
  * \brief 删除树中的某个元素
  * \param pTree 指向树
@@ -96,7 +105,7 @@ void postorderTraversal(const Trnode *const pRoot, void (*func)(void *));
  * \retval false 参数不合法或要删除的元素不存在
  * \date by yingquelou at 2022-07-02 21:59:47
  */
-bool deleteItem(Tree *const pTree, void *const pItem, const CompareFunction cmp);
+TREE_API bool deleteItem(Tree *const pTree, void *const pItem, const CompareFunction cmp);
 #ifdef __cplusplus
 }
 #endif
