@@ -2,8 +2,12 @@
 *.i
 *.s
 *.txt
+*.7z
+*.zip
 !CMakeLists.txt
 build
+_CPack_Packages
+
 # Prerequisites
 *.d
 
@@ -36,3 +40,4 @@ build
 *.exe
 *.out
 *.app
+

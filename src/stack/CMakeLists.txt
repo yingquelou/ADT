@@ -1,0 +1,3 @@
+cmake_path(GET CMAKE_CURRENT_LIST_DIR FILENAME PROJ)
+add_library(${PROJ} Stack.c)
+target_include_directories(${PROJ} INTERFACE ${CMAKE_CURRENT_LIST_DIR} PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
